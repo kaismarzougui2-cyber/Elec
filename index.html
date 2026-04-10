@@ -605,6 +605,73 @@
       box-shadow: 0 8px 28px rgba(255,184,0,.45);
     }
 
+    /* ── RÉALISATIONS ── */
+    #realisations { background: var(--white); }
+
+    .real-header { text-align: center; }
+    .real-header .section-sub { margin: 0 auto 56px; }
+
+    .real-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .real-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 8px 40px rgba(0,0,0,.15);
+      cursor: pointer;
+    }
+
+    .real-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .real-card:hover img { transform: scale(1.06); }
+
+    .real-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .35s;
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+    }
+
+    .real-card:hover .real-card-overlay { opacity: 1; }
+
+    .real-card-label {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .real-card-label::before {
+      content: '';
+      width: 28px; height: 3px;
+      background: var(--yellow);
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    @media (max-width: 680px) {
+      .real-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--dark);
@@ -717,6 +784,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#services">Services</a></li>
       <li><a href="#why">Pourquoi nous</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
 
@@ -834,6 +902,29 @@
         <div class="why-card">
           <div class="big">0€</div>
           <p>Devis gratuit</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RÉALISATIONS ══ -->
+  <section id="realisations">
+    <div class="real-header reveal">
+      <div class="section-label">Nos travaux</div>
+      <h2 class="section-title">Réalisations</h2>
+      <p class="section-sub">Quelques exemples de nos chantiers — éclairage extérieur et installations intérieures haut de gamme.</p>
+    </div>
+    <div class="real-grid">
+      <div class="real-card reveal">
+        <img src="img/eclairage-exterieur.jpg" alt="Éclairage extérieur maison – ELEC NESS" loading="lazy" />
+        <div class="real-card-overlay">
+          <div class="real-card-label">Éclairage extérieur</div>
+        </div>
+      </div>
+      <div class="real-card reveal">
+        <img src="img/eclairage-interieur.jpg" alt="Installation lustre intérieur – ELEC NESS" loading="lazy" />
+        <div class="real-card-overlay">
+          <div class="real-card-label">Éclairage intérieur</div>
         </div>
       </div>
     </div>
