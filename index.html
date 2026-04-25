@@ -56,10 +56,12 @@
     background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
   }
 
-  .nav-logo img {
-    height: 28px;
-    display: block;
-    filter: brightness(0) invert(1);
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.18em;
+    color: var(--white);
+    text-decoration: none;
   }
 
   .nav-links {
@@ -477,11 +479,12 @@
     border-top: 1px solid var(--line);
   }
 
-  .footer-logo img {
-    height: 28px;
-    filter: brightness(0) invert(1);
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.18em;
+    color: var(--white);
     margin-bottom: 16px;
-    display: block;
   }
 
   .footer-tagline {
@@ -551,9 +554,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <a href="#" class="nav-logo">
-    <img src="img/logo-alverra.png" alt="Alverra" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:sans-serif;font-weight:900;font-size:1.4rem;color:#f5f4f0;letter-spacing:3px\'>ALVERRA</span>'">
-  </a>
+  <a href="#" class="nav-logo">ALVERRA</a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#secteurs">Secteurs</a></li>
@@ -723,9 +724,7 @@
 
 <footer>
   <div>
-    <div class="footer-logo">
-      <img src="img/logo-alverra.png" alt="Alverra" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:sans-serif;font-weight:900;font-size:1.2rem;color:#f5f4f0;letter-spacing:3px\'>ALVERRA</span>'">
-    </div>
+    <div class="footer-logo">ALVERRA</div>
     <p class="footer-tagline">Votre croissance digitale, de A à Z. Stratégie, création, acquisition — tout sous un même toit.</p>
   </div>
   <div class="footer-col">
