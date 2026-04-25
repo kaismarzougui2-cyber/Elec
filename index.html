@@ -1,1064 +1,801 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ELEC NESS – Électricien Professionnel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
-  <style>
-    /* ── Reset & base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --yellow:     #FFB800;
-      --dark:       #2D2D2D;
-      --white:      #FFFFFF;
-      --gray:       #F5F5F5;
-      --yellow-hover: #e6a600;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--white);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
-
-    /* ── NAVBAR ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 6%;
-      height: 70px;
-      background: var(--dark);
-      box-shadow: 0 2px 20px rgba(0,0,0,.4);
-      transition: background .3s;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .nav-logo .logo-icon {
-      width: 42px;
-      height: 42px;
-      background: var(--yellow);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--dark);
-      letter-spacing: -1px;
-    }
-
-    .nav-logo .logo-text {
-      font-size: 1.25rem;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 2px;
-    }
-
-    .nav-logo .logo-text span { color: var(--yellow); }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--white);
-      font-weight: 600;
-      font-size: .9rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: color .25s;
-    }
-
-    .nav-links a:hover { color: var(--yellow); }
-
-    .nav-cta {
-      background: var(--yellow);
-      color: var(--dark) !important;
-      padding: 10px 22px;
-      border-radius: 6px;
-      transition: background .25s !important;
-    }
-
-    .nav-cta:hover { background: var(--yellow-hover) !important; color: var(--dark) !important; }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .hamburger span {
-      width: 26px; height: 3px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: .3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      background: var(--dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 6% 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* animated lightning grid */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,184,0,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,184,0,.07) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: gridMove 20s linear infinite;
-    }
-
-    @keyframes gridMove { to { background-position: 50px 50px; } }
-
-    .hero-content { position: relative; z-index: 1; max-width: 780px; }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,184,0,.15);
-      border: 1px solid var(--yellow);
-      color: var(--yellow);
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 6px 18px;
-      border-radius: 50px;
-      margin-bottom: 28px;
-      animation: fadeUp .8s ease both;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.05;
-      letter-spacing: -1px;
-      margin-bottom: 10px;
-      animation: fadeUp .9s ease .1s both;
-    }
-
-    .hero h1 span { color: var(--yellow); }
-
-    .hero-slogan {
-      font-size: clamp(.95rem, 2.5vw, 1.2rem);
-      font-weight: 600;
-      color: rgba(255,255,255,.75);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 44px;
-      animation: fadeUp .9s ease .2s both;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeUp .9s ease .3s both;
-    }
-
-    .btn-primary {
-      background: var(--yellow);
-      color: var(--dark);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 16px 36px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      letter-spacing: .5px;
-      transition: background .25s, transform .2s, box-shadow .25s;
-      box-shadow: 0 6px 24px rgba(255,184,0,.35);
-      display: inline-block;
-    }
-
-    .btn-primary:hover {
-      background: var(--yellow-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255,184,0,.5);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 15px 36px;
-      border: 2px solid rgba(255,255,255,.35);
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      letter-spacing: .5px;
-      transition: border-color .25s, color .25s, transform .2s;
-      display: inline-block;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--yellow);
-      color: var(--yellow);
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 48px;
-      justify-content: center;
-      margin-top: 72px;
-      flex-wrap: wrap;
-      animation: fadeUp .9s ease .4s both;
-    }
-
-    .hero-stat strong {
-      display: block;
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: var(--yellow);
-      line-height: 1;
-    }
-
-    .hero-stat span {
-      font-size: .8rem;
-      color: rgba(255,255,255,.55);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    /* scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      animation: bounce 2s infinite;
-    }
-
-    .scroll-indicator span {
-      font-size: .7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.4);
-    }
-
-    .scroll-arrow {
-      width: 24px; height: 24px;
-      border-right: 2px solid rgba(255,184,0,.6);
-      border-bottom: 2px solid rgba(255,184,0,.6);
-      transform: rotate(45deg);
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* ── SECTION COMMONS ── */
-    section { padding: 100px 6%; }
-
-    .section-label {
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      color: var(--dark);
-      line-height: 1.15;
-      margin-bottom: 18px;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: #666;
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 56px;
-    }
-
-    .dark-section .section-title,
-    .dark-section .section-label { color: var(--yellow); }
-    .dark-section .section-sub { color: rgba(255,255,255,.65); }
-
-    /* ── SERVICES ── */
-    #services { background: var(--gray); }
-
-    .services-header { text-align: center; }
-    .services-header .section-sub { margin: 0 auto 56px; }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .service-card {
-      background: var(--white);
-      border-radius: 14px;
-      padding: 36px 30px;
-      border: 2px solid transparent;
-      transition: border-color .3s, transform .3s, box-shadow .3s;
-      cursor: default;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: var(--yellow);
-      transform: scaleY(0);
-      transform-origin: bottom;
-      transition: transform .3s;
-    }
-
-    .service-card:hover {
-      border-color: var(--yellow);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.12);
-    }
-
-    .service-card:hover::before { transform: scaleY(1); }
-
-    .service-icon {
-      width: 60px; height: 60px;
-      background: rgba(255,184,0,.12);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 22px;
-      font-size: 1.7rem;
-      transition: background .3s;
-    }
-
-    .service-card:hover .service-icon { background: rgba(255,184,0,.25); }
-
-    .service-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--dark);
-    }
-
-    .service-card p {
-      font-size: .9rem;
-      color: #777;
-      line-height: 1.65;
-    }
-
-    /* ── WHY US ── */
-    #why {
-      background: var(--dark);
-      position: relative;
-      overflow: hidden;
-    }
-
-    #why::after {
-      content: '';
-      position: absolute;
-      top: -150px; right: -150px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(255,184,0,.08), transparent 70%);
-      border-radius: 50%;
-    }
-
-    .why-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-
-    .why-text .section-title { color: var(--white); }
-    .why-text .section-sub { color: rgba(255,255,255,.6); margin-bottom: 40px; }
-
-    .why-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .why-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      color: rgba(255,255,255,.85);
-      font-size: .95rem;
-      line-height: 1.55;
-    }
-
-    .why-list li .check {
-      width: 26px; height: 26px;
-      background: var(--yellow);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .75rem;
-      color: var(--dark);
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .why-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .why-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,184,0,.2);
-      border-radius: 14px;
-      padding: 30px 24px;
-      text-align: center;
-      transition: background .3s, border-color .3s;
-    }
-
-    .why-card:hover {
-      background: rgba(255,184,0,.08);
-      border-color: var(--yellow);
-    }
-
-    .why-card .big { font-size: 2.5rem; font-weight: 900; color: var(--yellow); line-height: 1; }
-    .why-card p { font-size: .8rem; color: rgba(255,255,255,.55); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--gray); }
-
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-
-    .contact-info { display: flex; flex-direction: column; gap: 24px; }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      background: var(--white);
-      border-radius: 12px;
-      padding: 22px 24px;
-      box-shadow: 0 2px 20px rgba(0,0,0,.06);
-      text-decoration: none;
-      color: var(--dark);
-      transition: box-shadow .3s, transform .3s;
-    }
-
-    .contact-item:hover {
-      box-shadow: 0 8px 30px rgba(0,0,0,.12);
-      transform: translateX(6px);
-    }
-
-    .contact-item-icon {
-      width: 50px; height: 50px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .contact-item-icon.phone { background: rgba(255,184,0,.15); }
-    .contact-item-icon.mail  { background: rgba(255,184,0,.15); }
-    .contact-item-icon.insta {
-      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    }
-
-    .contact-item-info strong {
-      display: block;
-      font-size: .75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 4px;
-    }
-
-    .contact-item-info span {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--dark);
-    }
-
-    /* Form */
-    .contact-form {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 44px 40px;
-      box-shadow: 0 4px 30px rgba(0,0,0,.08);
-    }
-
-    .contact-form h3 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 28px;
-      color: var(--dark);
-    }
-
-    .form-group { margin-bottom: 20px; }
-
-    .form-group label {
-      display: block;
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 8px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #eee;
-      border-radius: 8px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: .95rem;
-      color: var(--dark);
-      transition: border-color .25s;
-      outline: none;
-      resize: none;
-      background: var(--white);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus { border-color: var(--yellow); }
-
-    .form-group textarea { height: 130px; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .btn-submit {
-      width: 100%;
-      background: var(--yellow);
-      color: var(--dark);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      letter-spacing: .5px;
-      transition: background .25s, transform .2s, box-shadow .25s;
-      box-shadow: 0 4px 20px rgba(255,184,0,.3);
-    }
-
-    .btn-submit:hover {
-      background: var(--yellow-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(255,184,0,.45);
-    }
-
-    /* ── RÉALISATIONS ── */
-    #realisations { background: var(--white); }
-
-    .real-header { text-align: center; }
-    .real-header .section-sub { margin: 0 auto 56px; }
-
-    .real-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .real-card {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      box-shadow: 0 8px 40px rgba(0,0,0,.15);
-      cursor: pointer;
-    }
-
-    .real-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .5s ease;
-      background: var(--dark);
-    }
-
-
-    .real-card:hover img { transform: scale(1.06); }
-
-    .real-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity .35s;
-      display: flex;
-      align-items: flex-end;
-      padding: 28px;
-    }
-
-    .real-card:hover .real-card-overlay { opacity: 1; }
-
-    .real-card-label {
-      color: var(--white);
-      font-weight: 700;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .real-card-label::before {
-      content: '';
-      width: 28px; height: 3px;
-      background: var(--yellow);
-      border-radius: 2px;
-      display: inline-block;
-    }
-
-    @media (max-width: 680px) {
-      .real-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,.55);
-      text-align: center;
-      padding: 48px 6% 36px;
-    }
-
-    .footer-logo {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 3px;
-      margin-bottom: 6px;
-    }
-
-    .footer-logo span { color: var(--yellow); }
-
-    .footer-slogan {
-      font-size: .8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      color: rgba(255,255,255,.4);
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-      list-style: none;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      color: rgba(255,255,255,.5);
-      font-size: .85rem;
-      transition: color .25s;
-    }
-
-    .footer-links a:hover { color: var(--yellow); }
-
-    .footer-divider {
-      width: 60px;
-      height: 2px;
-      background: var(--yellow);
-      margin: 0 auto 28px;
-    }
-
-    .footer-copy { font-size: .8rem; color: rgba(255,255,255,.3); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── MOBILE ── */
-    @media (max-width: 900px) {
-      .why-inner, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
-      .why-cards { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 680px) {
-      .nav-links { display: none; flex-direction: column; gap: 0; }
-      .nav-links.open {
-        display: flex;
-        position: fixed;
-        top: 70px; left: 0; right: 0;
-        background: var(--dark);
-        padding: 20px 0;
-        box-shadow: 0 10px 30px rgba(0,0,0,.4);
-      }
-      .nav-links a { padding: 14px 6%; border-bottom: 1px solid rgba(255,255,255,.07); }
-      .nav-cta { margin: 10px 6% 0; border-radius: 6px; text-align: center; }
-      .hamburger { display: flex; }
-      .hero-stats { gap: 32px; }
-      .why-cards { grid-template-columns: 1fr 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .contact-form { padding: 32px 24px; }
-    }
-
-    @media (max-width: 420px) {
-      .why-cards { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALVERRA — Agence de Communication</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f4f0;
+    --accent: #e8e0d0;
+    --gray: #888;
+    --line: rgba(255,255,255,0.08);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--white);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(245,244,240,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.12s ease;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+  }
+
+  .nav-logo img {
+    height: 28px;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+
+  .nav-links {
+    display: flex; gap: 48px; list-style: none;
+  }
+  .nav-links a {
+    color: rgba(245,244,240,0.55);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--white) !important;
+    color: var(--black) !important;
+    padding: 10px 24px;
+    font-size: 12px !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 140px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(232,224,208,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 80% at 10% 80%, rgba(255,255,255,0.03) 0%, transparent 60%);
+  }
+
+  .hero-grid-line {
+    position: absolute;
+    top: 0; bottom: 0; left: 50%;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 32px;
+  }
+  .hero-eyebrow span {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gray);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 9vw, 130px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 36px;
+  }
+
+  h1 .outline {
+    -webkit-text-stroke: 1.5px var(--white);
+    color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(245,244,240,0.55);
+    max-width: 420px;
+    margin-bottom: 52px;
+  }
+
+  .hero-btns { display: flex; gap: 16px; align-items: center; }
+
+  .btn-primary {
+    background: var(--white);
+    color: var(--black);
+    padding: 16px 36px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+  .btn-ghost {
+    color: var(--white);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .btn-ghost:hover { opacity: 1; }
+  .btn-ghost::after { content: '→'; font-size: 16px; }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: flex-end; gap: 24px;
+    padding-left: 60px;
+  }
+
+  .metric-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 28px 36px;
+    min-width: 220px;
+    position: relative;
+    overflow: hidden;
+    animation: floatCard 4s ease-in-out infinite;
+  }
+  .metric-card:nth-child(2) { animation-delay: 1s; margin-right: 40px; }
+  .metric-card:nth-child(3) { animation-delay: 2s; }
+
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), transparent);
+  }
+
+  .metric-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .marquee-section {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 28px;
+    padding: 0 28px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,244,240,0.35);
+  }
+
+  .marquee-dot {
+    width: 4px; height: 4px;
+    background: rgba(245,244,240,0.25);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .section { padding: 120px 60px; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 70px;
+  }
+  .section-label span {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--line);
+    max-width: 80px;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 70px;
+  }
+
+  .service-card {
+    background: var(--black);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+    cursor: none;
+  }
+  .service-card:hover { background: #111; }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--white);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover::after { width: 100%; }
+
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 32px;
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(245,244,240,0.45);
+  }
+
+  .service-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 24px;
+  }
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    color: rgba(245,244,240,0.4);
+    border-radius: 2px;
+  }
+
+  .sectors { padding: 80px 60px 120px; }
+
+  .sectors-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 70px;
+  }
+  .sectors-intro p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(245,244,240,0.5);
+    align-self: end;
+  }
+
+  .sectors-list { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .sector-pill {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .sector-pill:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+    transform: scale(1.04);
+  }
+
+  .process { padding: 120px 60px; background: #060606; }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 80px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 0; right: 0;
+    height: 1px;
+    background: var(--line);
+    z-index: 0;
+  }
+
+  .process-step { padding: 0 32px 0 0; position: relative; z-index: 1; }
+
+  .step-dot {
+    width: 56px; height: 56px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+    background: var(--black);
+  }
+
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,244,240,0.4);
+  }
+
+  .cta-band {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 60px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cta-band h2 { margin-bottom: 12px; }
+  .cta-band p {
+    font-size: 15px;
+    color: rgba(245,244,240,0.45);
+    max-width: 500px;
+  }
+  .cta-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+
+  .audit-badge {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .audit-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  footer {
+    padding: 60px 60px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 60px;
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-logo img {
+    height: 28px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(245,244,240,0.35);
+    line-height: 1.6;
+    max-width: 220px;
+  }
+
+  .footer-col h4 {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li {
+    font-size: 14px;
+    color: rgba(245,244,240,0.45);
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .footer-col ul li:hover { color: var(--white); }
+
+  .footer-bottom {
+    padding: 24px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--line);
+  }
+  .footer-bottom span {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(245,244,240,0.25);
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; }
+    .hero-right { display: none; }
+    .section, .sectors, .process { padding: 80px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .process-steps::before { display: none; }
+    .cta-band { grid-template-columns: 1fr; padding: 80px 24px; }
+    .cta-right { align-items: flex-start; }
+    footer { grid-template-columns: 1fr; padding: 40px 24px; }
+    .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 12px; }
+    .sectors-intro { grid-template-columns: 1fr; gap: 32px; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ══ NAVBAR ══ -->
-  <nav>
-    <a class="nav-logo" href="#home">
-      <div class="logo-icon">EN</div>
-      <span class="logo-text">ELEC <span>NESS</span></span>
-    </a>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#why">Pourquoi nous</a></li>
-      <li><a href="#realisations">Réalisations</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="img/logo-alverra.png" alt="Alverra" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:sans-serif;font-weight:900;font-size:1.4rem;color:#f5f4f0;letter-spacing:3px\'>ALVERRA</span>'">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#secteurs">Secteurs</a></li>
+    <li><a href="#processus">Méthode</a></li>
+    <li><a href="#contact" class="nav-cta">Audit Gratuit</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid-line"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span>Agence de Communication</span></div>
+    <h1>VOTRE<br><span class="outline">CROISSANCE</span><br>EN LIGNE</h1>
+    <p class="hero-desc">Alverra conçoit des stratégies digitales complètes — sites web, publicités, réseaux sociaux, marketing — pour propulser chaque type d'entreprise vers ses clients.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Audit Gratuit sur RDV</a>
+      <a href="#services" class="btn-ghost">Découvrir</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="metric-card">
+      <div class="metric-num">360°</div>
+      <div class="metric-label">Vision digitale complète</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">+ROI</div>
+      <div class="metric-label">Acquisition optimisée</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">100%</div>
+      <div class="metric-label">Sur mesure</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Sites Web<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Google Ads<span class="marquee-dot"></span></span>
+    <span class="marquee-item">TikTok Ads<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Meta Ads<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Stratégie Digitale<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Flyers & Print<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Business Plan<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Étude de Marché<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Acquisition Client<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Sites Web<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Google Ads<span class="marquee-dot"></span></span>
+    <span class="marquee-item">TikTok Ads<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Meta Ads<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Stratégie Digitale<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Flyers & Print<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Business Plan<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Étude de Marché<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Acquisition Client<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="section-label"><span>Nos Expertises</span></div>
+  <h2>CE QUE<br>NOUS <span style="-webkit-text-stroke:1.5px var(--white);color:transparent">FAISONS</span></h2>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <span class="service-icon">⬡</span>
+      <div class="service-title">Création de Sites Web</div>
+      <div class="service-desc">Des sites web performants, modernes et orientés conversion — vitrine, e-commerce, landing page — livrés clé en main.</div>
+      <div class="service-tags"><span class="tag">Vitrine</span><span class="tag">E-commerce</span><span class="tag">Landing Page</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <span class="service-icon">◈</span>
+      <div class="service-title">Gestion des Ads</div>
+      <div class="service-desc">Campagnes publicitaires pilotées sur Google, TikTok, Instagram et Facebook pour maximiser votre retour sur investissement.</div>
+      <div class="service-tags"><span class="tag">Google</span><span class="tag">TikTok</span><span class="tag">Meta</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <span class="service-icon">◎</span>
+      <div class="service-title">Stratégie & Acquisition</div>
+      <div class="service-desc">Réseaux sociaux, tunnels de vente, création d'offres irrésistibles — on construit votre machine à clients.</div>
+      <div class="service-tags"><span class="tag">Réseaux Sociaux</span><span class="tag">Offres</span><span class="tag">Funnel</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <span class="service-icon">▣</span>
+      <div class="service-title">Flyers & Print</div>
+      <div class="service-desc">Communication visuelle percutante pour renforcer votre image de marque en dehors du digital.</div>
+      <div class="service-tags"><span class="tag">Flyers</span><span class="tag">Affiches</span><span class="tag">Identité</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <span class="service-icon">◇</span>
+      <div class="service-title">Marketing & Étude de Marché</div>
+      <div class="service-desc">Analyse concurrentielle, positionnement, étude de marché approfondie pour prendre des décisions éclairées.</div>
+      <div class="service-tags"><span class="tag">Étude de Marché</span><span class="tag">Positionnement</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <span class="service-icon">◉</span>
+      <div class="service-title">Business Plan & Conseil</div>
+      <div class="service-desc">Création de business plan solide, conseil en opportunités et structuration de votre projet entrepreneurial.</div>
+      <div class="service-tags"><span class="tag">Business Plan</span><span class="tag">Conseil</span><span class="tag">Création</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sectors" id="secteurs">
+  <div class="section-label"><span>Secteurs</span></div>
+  <div class="sectors-intro">
+    <h2>NOUS<br>TRAVAILLONS<br>AVEC <span style="-webkit-text-stroke:1.5px var(--white);color:transparent">TOUS</span></h2>
+    <p>Peu importe votre secteur d'activité, Alverra s'adapte à vos réalités métier pour créer des stratégies qui parlent à votre clientèle.</p>
+  </div>
+  <div class="sectors-list fade-up">
+    <div class="sector-pill">Restauration & Snack</div>
+    <div class="sector-pill">BTP & Construction</div>
+    <div class="sector-pill">Électricité</div>
+    <div class="sector-pill">Conseil</div>
+    <div class="sector-pill">Commerce</div>
+    <div class="sector-pill">Beauté & Bien-être</div>
+    <div class="sector-pill">Immobilier</div>
+    <div class="sector-pill">Auto & Moto</div>
+    <div class="sector-pill">Santé</div>
+    <div class="sector-pill">Sport & Fitness</div>
+    <div class="sector-pill">Éducation</div>
+    <div class="sector-pill">& Plus encore</div>
+  </div>
+</section>
+
+<section class="process" id="processus">
+  <div class="section-label"><span>Notre Méthode</span></div>
+  <h2>SIMPLE.<br><span style="-webkit-text-stroke:1.5px var(--white);color:transparent">EFFICACE.</span><br>RAPIDE.</h2>
+  <div class="process-steps fade-up">
+    <div class="process-step">
+      <div class="step-dot">01</div>
+      <div class="step-title">Audit Gratuit</div>
+      <div class="step-desc">On analyse votre situation actuelle, vos objectifs et vos concurrents lors d'un RDV sans engagement.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-dot">02</div>
+      <div class="step-title">Stratégie</div>
+      <div class="step-desc">On conçoit un plan d'action sur-mesure — canaux, offres, messages — adapté à votre secteur.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-dot">03</div>
+      <div class="step-title">Exécution</div>
+      <div class="step-desc">Notre équipe déploie, crée et gère chaque élément de votre communication digitale.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-dot">04</div>
+      <div class="step-title">Optimisation</div>
+      <div class="step-desc">On analyse les performances et on ajuste en continu pour maximiser vos résultats.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <div>
+    <h2>PRÊT À<br><span style="-webkit-text-stroke:1.5px var(--white);color:transparent">DÉCOLLER</span> ?</h2>
+    <p>Réservez votre audit gratuit dès maintenant. On analyse votre business, on vous propose un plan d'action — sans engagement.</p>
+  </div>
+  <div class="cta-right">
+    <div class="audit-badge">Audit gratuit disponible</div>
+    <a href="mailto:contact@alverra.fr" class="btn-primary">Prendre RDV →</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">
+      <img src="img/logo-alverra.png" alt="Alverra" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:sans-serif;font-weight:900;font-size:1.2rem;color:#f5f4f0;letter-spacing:3px\'>ALVERRA</span>'">
+    </div>
+    <p class="footer-tagline">Votre croissance digitale, de A à Z. Stratégie, création, acquisition — tout sous un même toit.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Services</h4>
+    <ul>
+      <li>Création de Sites Web</li>
+      <li>Gestion des Ads</li>
+      <li>Stratégie Digitale</li>
+      <li>Flyers & Print</li>
+      <li>Étude de Marché</li>
+      <li>Business Plan</li>
     </ul>
-
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-
-  <!-- ══ HERO ══ -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="hero-badge">⚡ Électricien certifié – Île-de-France</div>
-      <h1>ELEC <span>NESS</span></h1>
-      <p class="hero-slogan">Sécurité, Efficacité et Qualité Garantie !</p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#contact">Demander un devis gratuit</a>
-        <a class="btn-outline" href="#services">Nos services</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat"><strong>6+</strong><span>Ans d'expérience</span></div>
-        <div class="hero-stat"><strong>500+</strong><span>Chantiers réalisés</span></div>
-        <div class="hero-stat"><strong>100%</strong><span>Clients satisfaits</span></div>
-      </div>
-    </div>
-    <div class="scroll-indicator">
-      <span>Découvrir</span>
-      <div class="scroll-arrow"></div>
-    </div>
-  </section>
-
-  <!-- ══ SERVICES ══ -->
-  <section id="services">
-    <div class="services-header reveal">
-      <div class="section-label">Ce que nous faisons</div>
-      <h2 class="section-title">Nos Services Électriques</h2>
-      <p class="section-sub">De l'installation à la domotique, nous couvrons tous vos besoins électriques avec professionnalisme et rapidité.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon">🔌</div>
-        <h3>Installation électrique complète</h3>
-        <p>Conception et réalisation de toutes vos installations électriques, du tableau au câblage, dans les normes NF C 15-100.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">⚡</div>
-        <h3>Dépannage rapide et fiable</h3>
-        <p>Intervention urgente pour panne de courant, disjoncteur, court-circuit ou tout dysfonctionnement électrique.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🔧</div>
-        <h3>Rénovation et mise aux normes</h3>
-        <p>Mise en conformité de vos installations anciennes pour garantir sécurité et tranquillité d'esprit.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">💡</div>
-        <h3>Éclairage intérieur / extérieur</h3>
-        <p>Installation de systèmes d'éclairage LED, spots encastrés, éclairage architectural et balisage extérieur.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🔋</div>
-        <h3>Tableaux électriques et bornes de recharge</h3>
-        <p>Installation de tableaux électriques et bornes IRVE pour véhicules électriques à domicile ou en entreprise.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🏠</div>
-        <h3>Domotique maison connectée</h3>
-        <p>Automatisation de votre habitat : volets, éclairage, chauffage, sécurité — contrôle depuis votre smartphone.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ WHY US ══ -->
-  <section id="why">
-    <div class="why-inner">
-      <div class="why-text reveal">
-        <div class="section-label">Pourquoi nous choisir</div>
-        <h2 class="section-title" style="color:var(--white);">L'Excellence Électrique à Votre Service</h2>
-        <p class="section-sub">Chaque intervention est réalisée avec rigueur, transparence et respect de votre domicile. Votre sécurité est notre priorité absolue.</p>
-        <ul class="why-list">
-          <li>
-            <div class="check">✓</div>
-            <span>Devis gratuit et sans engagement sous 24h</span>
-          </li>
-          <li>
-            <div class="check">✓</div>
-            <span>Artisan certifié, assurance décennale incluse</span>
-          </li>
-          <li>
-            <div class="check">✓</div>
-            <span>Respect des normes NF C 15-100 et RE 2020</span>
-          </li>
-          <li>
-            <div class="check">✓</div>
-            <span>Intervention rapide 7j/7 en cas d'urgence</span>
-          </li>
-          <li>
-            <div class="check">✓</div>
-            <span>Travaux propres, ponctualité et suivi client garantis</span>
-          </li>
-        </ul>
-      </div>
-      <div class="why-cards reveal">
-        <div class="why-card">
-          <div class="big">24h</div>
-          <p>Devis rapide</p>
-        </div>
-        <div class="why-card">
-          <div class="big">7/7</div>
-          <p>Disponibilité</p>
-        </div>
-        <div class="why-card">
-          <div class="big">10</div>
-          <p>Ans de garantie</p>
-        </div>
-        <div class="why-card">
-          <div class="big">0€</div>
-          <p>Devis gratuit</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ RÉALISATIONS ══ -->
-  <section id="realisations">
-    <div class="real-header reveal">
-      <div class="section-label">Nos travaux</div>
-      <h2 class="section-title">Réalisations</h2>
-      <p class="section-sub">Quelques exemples de nos chantiers — éclairage extérieur et installations intérieures haut de gamme.</p>
-    </div>
-    <div class="real-grid">
-      <div class="real-card reveal">
-        <img src="img/eclairage-exterieur.webp" alt="Éclairage extérieur maison – ELEC NESS" loading="lazy" />
-        <div class="real-card-overlay">
-          <div class="real-card-label">Éclairage extérieur</div>
-        </div>
-      </div>
-      <div class="real-card reveal">
-        <img src="img/eclairage-interieur.webp" alt="Installation lustre intérieur – ELEC NESS" loading="lazy" />
-        <div class="real-card-overlay">
-          <div class="real-card-label">Éclairage intérieur</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ CONTACT ══ -->
-  <section id="contact">
-    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 64px;">
-      <div class="section-label">Parlons de votre projet</div>
-      <h2 class="section-title">Contactez-nous</h2>
-      <p class="section-sub" style="margin:0 auto;">Devis gratuit, réponse rapide. Remplissez le formulaire ou contactez-nous directement.</p>
-    </div>
-    <div class="contact-inner">
-      <div class="contact-info reveal">
-        <a class="contact-item" href="tel:0665632709">
-          <div class="contact-item-icon phone">📞</div>
-          <div class="contact-item-info">
-            <strong>Téléphone</strong>
-            <span>06-65-63-27-09</span>
-          </div>
-        </a>
-        <a class="contact-item" href="mailto:elecness25@gmail.com">
-          <div class="contact-item-icon mail">✉️</div>
-          <div class="contact-item-info">
-            <strong>E-mail</strong>
-            <span>elecness25@gmail.com</span>
-          </div>
-        </a>
-        <a class="contact-item" href="https://instagram.com/elecness" target="_blank" rel="noopener">
-          <div class="contact-item-icon insta" style="color:#fff; font-size:1.4rem;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/>
-              <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="white"/>
-            </svg>
-          </div>
-          <div class="contact-item-info">
-            <strong>Instagram</strong>
-            <span>@elecness</span>
-          </div>
-        </a>
-      </div>
-
-      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
-        <h3>Demande de devis gratuit</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname">Prénom</label>
-            <input id="fname" type="text" placeholder="Jean" required />
-          </div>
-          <div class="form-group">
-            <label for="lname">Nom</label>
-            <input id="lname" type="text" placeholder="Dupont" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="jean@exemple.fr" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">Téléphone</label>
-          <input id="phone" type="tel" placeholder="06 XX XX XX XX" />
-        </div>
-        <div class="form-group">
-          <label for="msg">Votre projet</label>
-          <textarea id="msg" placeholder="Décrivez votre besoin électrique..." required></textarea>
-        </div>
-        <button class="btn-submit" type="submit">⚡ Envoyer ma demande</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- ══ FOOTER ══ -->
-  <footer>
-    <div class="footer-logo">ELEC <span>NESS</span></div>
-    <div class="footer-slogan">Sécurité · Efficacité · Qualité</div>
-    <ul class="footer-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#why">Pourquoi nous</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="mailto:elecness25@gmail.com">elecness25@gmail.com</a></li>
-      <li><a href="tel:0665632709">06-65-63-27-09</a></li>
+  </div>
+  <div class="footer-col">
+    <h4>Contact</h4>
+    <ul>
+      <li>contact@alverra.fr</li>
+      <li>Audit Gratuit sur RDV</li>
+      <li>Instagram</li>
+      <li>LinkedIn</li>
     </ul>
-    <div class="footer-divider"></div>
-    <p class="footer-copy">&copy; 2024 ELEC NESS — Tous droits réservés.</p>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    /* ── Hamburger menu ── */
-    function toggleMenu() {
-      const nav = document.getElementById('navLinks');
-      const btn = document.getElementById('hamburger');
-      nav.classList.toggle('open');
-      btn.classList.toggle('open');
-    }
+<div class="footer-bottom">
+  <span>© 2025 ALVERRA. Tous droits réservés.</span>
+  <span>Agence de Communication Digitale</span>
+</div>
 
-    document.querySelectorAll('#navLinks a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('open');
-        document.getElementById('hamburger').classList.remove('open');
-      });
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+
+  document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+  });
+
+  function animateRing() {
+    rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a,button,.service-card,.sector-pill').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width='18px'; cursor.style.height='18px';
+      cursor.style.background='rgba(245,244,240,0.5)';
+      ring.style.width='56px'; ring.style.height='56px';
     });
-
-    /* ── Scroll reveal ── */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach((el, i) => {
-      el.style.transitionDelay = (i % 3) * 0.1 + 's';
-      observer.observe(el);
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width='10px'; cursor.style.height='10px';
+      cursor.style.background='var(--white)';
+      ring.style.width='36px'; ring.style.height='36px';
     });
+  });
 
-    /* ── Form submit ── */
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      btn.textContent = '✅ Message envoyé !';
-      btn.style.background = '#22c55e';
-      btn.style.boxShadow = '0 4px 20px rgba(34,197,94,.35)';
-      setTimeout(() => {
-        btn.textContent = '⚡ Envoyer ma demande';
-        btn.style.background = '';
-        btn.style.boxShadow = '';
-        e.target.reset();
-      }, 3500);
-    }
-  </script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry,i) => {
+      if(entry.isIntersecting) {
+        entry.target.style.transitionDelay=i*0.1+'s';
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.15});
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
