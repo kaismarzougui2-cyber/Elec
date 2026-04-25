@@ -438,6 +438,193 @@
     color: rgba(245,244,240,0.4);
   }
 
+  /* ── RÉALISATIONS ── */
+  .realisations {
+    padding: 120px 60px;
+    background: #060606;
+  }
+  .realisations-header { margin-bottom: 70px; }
+
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 60px;
+  }
+  .tab-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    color: rgba(245,244,240,0.35);
+    background: none;
+    border: none;
+    cursor: none;
+    padding: 0 36px 24px 0;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 0; height: 1px;
+    background: var(--white);
+    transition: width 0.4s ease;
+  }
+  .tab-btn:hover { color: rgba(245,244,240,0.7); }
+  .tab-btn.active { color: var(--white); }
+  .tab-btn.active::after { width: calc(100% - 36px); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .case-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 48px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  }
+  .case-client {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 12px;
+  }
+  .case-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.06em;
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+  .case-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+  }
+  .case-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .case-stat-val.highlight { color: var(--accent); }
+  .case-stat-label {
+    font-size: 11px;
+    color: rgba(245,244,240,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .case-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 5px 12px;
+    margin-top: 32px;
+    color: var(--gray);
+  }
+
+  .sites-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .site-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+  .site-preview-wrap {
+    width: 100%; height: 300px;
+    overflow: hidden;
+    background: #111;
+    position: relative;
+  }
+  .site-preview-wrap iframe {
+    width: 100%; height: 100%;
+    border: none;
+    pointer-events: none;
+  }
+  .site-info {
+    padding: 24px 28px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .site-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+  }
+  .site-sector {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+  .site-link {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,244,240,0.4);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .site-link:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+
+  .photos-placeholder {
+    border: 1px dashed rgba(255,255,255,0.12);
+    padding: 80px;
+    text-align: center;
+  }
+  .photos-placeholder p {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245,244,240,0.2);
+  }
+
+  /* ── WHATSAPP FLOTTANT ── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    width: 52px; height: 52px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  }
+  .whatsapp-float svg {
+    width: 26px; height: 26px;
+    fill: var(--black);
+  }
+
   .cta-band {
     padding: 120px 60px;
     display: grid;
@@ -534,8 +721,11 @@
     .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; }
     .hero-right { display: none; }
-    .section, .sectors, .process { padding: 80px 24px; }
+    .section, .sectors, .process, .realisations { padding: 80px 24px; }
     .services-grid { grid-template-columns: 1fr; }
+    .cases-grid, .sites-grid { grid-template-columns: 1fr; }
+    .case-card { padding: 32px 24px; }
+    .whatsapp-float { bottom: 20px; right: 20px; width: 46px; height: 46px; }
     .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
     .process-steps::before { display: none; }
     .cta-band { grid-template-columns: 1fr; padding: 80px 24px; }
@@ -558,6 +748,7 @@
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#secteurs">Secteurs</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
     <li><a href="#processus">Méthode</a></li>
     <li><a href="#contact" class="nav-cta">Audit Gratuit</a></li>
   </ul>
@@ -684,6 +875,112 @@
   </div>
 </section>
 
+<section class="realisations" id="realisations">
+  <div class="section-label"><span>Portfolio</span></div>
+  <div class="realisations-header">
+    <h2>NOS<br><span style="-webkit-text-stroke:1.5px var(--white);color:transparent">RÉALISATIONS</span></h2>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="cas">Cas Clients</button>
+    <button class="tab-btn" data-tab="sites">Sites Web</button>
+    <button class="tab-btn" data-tab="photos">Réalisations</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-cas">
+    <div class="cases-grid fade-up">
+      <div class="case-card">
+        <div class="case-client">Client — Snack & Restauration</div>
+        <div class="case-title">CAMPAGNE VIRALE<br>TIKTOK ADS</div>
+        <div class="case-stats">
+          <div>
+            <div class="case-stat-val highlight">877K</div>
+            <div class="case-stat-label">Vues totales</div>
+          </div>
+          <div>
+            <div class="case-stat-val highlight">+1791%</div>
+            <div class="case-stat-label">Croissance profil</div>
+          </div>
+          <div>
+            <div class="case-stat-val">21K</div>
+            <div class="case-stat-label">Likes</div>
+          </div>
+          <div>
+            <div class="case-stat-val">6 219</div>
+            <div class="case-stat-label">Partages</div>
+          </div>
+          <div>
+            <div class="case-stat-val">18K</div>
+            <div class="case-stat-label">Visites profil</div>
+          </div>
+          <div>
+            <div class="case-stat-val">897</div>
+            <div class="case-stat-label">Commentaires</div>
+          </div>
+        </div>
+        <span class="case-tag">TikTok Ads</span>
+      </div>
+      <div class="case-card">
+        <div class="case-client">Client — Restauration Rapide</div>
+        <div class="case-title">ACQUISITION CLIENTS<br>ULTRA RENTABLE</div>
+        <div class="case-stats">
+          <div>
+            <div class="case-stat-val highlight">0,14€</div>
+            <div class="case-stat-label">Coût par appel</div>
+          </div>
+          <div>
+            <div class="case-stat-val highlight">24</div>
+            <div class="case-stat-label">Appels générés</div>
+          </div>
+          <div>
+            <div class="case-stat-val">6€</div>
+            <div class="case-stat-label">Budget total</div>
+          </div>
+          <div>
+            <div class="case-stat-val">2J</div>
+            <div class="case-stat-label">Durée campagne</div>
+          </div>
+        </div>
+        <span class="case-tag">Meta Ads</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-sites">
+    <div class="sites-grid fade-up">
+      <div class="site-card">
+        <div class="site-preview-wrap">
+          <iframe src="https://mitraelec.fr/" title="Mitra Elec" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+        </div>
+        <div class="site-info">
+          <div>
+            <div class="site-name">MITRA ELEC</div>
+            <div class="site-sector">Électricité</div>
+          </div>
+          <a href="https://mitraelec.fr/" target="_blank" rel="noopener" class="site-link">Voir →</a>
+        </div>
+      </div>
+      <div class="site-card">
+        <div class="site-preview-wrap">
+          <iframe src="https://www.ibiralelec.com/" title="Ibiral Elec" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+        </div>
+        <div class="site-info">
+          <div>
+            <div class="site-name">IBIRAL ELEC</div>
+            <div class="site-sector">Électricité</div>
+          </div>
+          <a href="https://www.ibiralelec.com/" target="_blank" rel="noopener" class="site-link">Voir →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-photos">
+    <div class="photos-placeholder">
+      <p>Photos de chantiers bientôt disponibles</p>
+    </div>
+  </div>
+</section>
+
 <section class="process" id="processus">
   <div class="section-label"><span>Notre Méthode</span></div>
   <h2>SIMPLE.<br><span style="-webkit-text-stroke:1.5px var(--white);color:transparent">EFFICACE.</span><br>RAPIDE.</h2>
@@ -754,6 +1051,13 @@
   <span>Agence de Communication Digitale</span>
 </div>
 
+<a href="https://wa.me/33665632709" class="whatsapp-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.558 4.122 1.532 5.851L.054 23.5l5.81-1.525A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.502-5.41-1.38l-.388-.229-4.026 1.057 1.07-3.924-.256-.406A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
 <script>
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
@@ -797,6 +1101,15 @@
   }, {threshold:0.15});
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
 </script>
 
 </body>
