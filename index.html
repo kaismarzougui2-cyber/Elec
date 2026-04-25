@@ -601,6 +601,35 @@
     color: rgba(245,244,240,0.2);
   }
 
+  .flyers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .flyer-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .flyer-img:hover { transform: scale(1.02); }
+
+  .tournage-wrap { position: relative; overflow: hidden; }
+  .tournage-img {
+    width: 100%;
+    max-height: 620px;
+    object-fit: cover;
+    display: block;
+  }
+  .tournage-caption {
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
   /* ── WHATSAPP FLOTTANT ── */
   .whatsapp-float {
     position: fixed;
@@ -725,6 +754,7 @@
     .services-grid { grid-template-columns: 1fr; }
     .cases-grid, .sites-grid { grid-template-columns: 1fr; }
     .case-card { padding: 32px 24px; }
+    .flyers-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
     .whatsapp-float { bottom: 20px; right: 20px; width: 46px; height: 46px; }
     .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
     .process-steps::before { display: none; }
@@ -883,6 +913,8 @@
   <div class="tabs">
     <button class="tab-btn active" data-tab="cas">Cas Clients</button>
     <button class="tab-btn" data-tab="sites">Sites Web</button>
+    <button class="tab-btn" data-tab="flyers">Flyers & Print</button>
+    <button class="tab-btn" data-tab="communication">Communication</button>
     <button class="tab-btn" data-tab="photos">Réalisations</button>
   </div>
 
@@ -971,6 +1003,21 @@
           <a href="https://www.ibiralelec.com/" target="_blank" rel="noopener" class="site-link">Voir →</a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-flyers">
+    <div class="flyers-grid fade-up">
+      <img src="IMG_4326.png" alt="Flyer Alverra" class="flyer-img">
+      <img src="IMG_4324.png" alt="Flyer Alverra" class="flyer-img">
+      <img src="IMG_7234.png" alt="Flyer Alverra" class="flyer-img">
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-communication">
+    <div class="tournage-wrap fade-up">
+      <img src="TOURNAGE.png" alt="Tournage Alverra" class="tournage-img">
+      <div class="tournage-caption">Tournage — Production vidéo client</div>
     </div>
   </div>
 
