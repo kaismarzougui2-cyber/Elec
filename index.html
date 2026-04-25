@@ -755,6 +755,9 @@
 </div>
 
 <script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
