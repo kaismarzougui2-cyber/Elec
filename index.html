@@ -11,7 +11,7 @@
     --black: #0a0a0a;
     --white: #f5f4f0;
     --accent: #e8e0d0;
-    --gray: #888;
+    --gray: #f5f4f0;
     --line: rgba(255,255,255,0.08);
   }
 
@@ -68,7 +68,7 @@
     display: flex; gap: 48px; list-style: none;
   }
   .nav-links a {
-    color: rgba(245,244,240,0.55);
+    color: var(--white);
     text-decoration: none;
     font-size: 13px;
     letter-spacing: 0.08em;
@@ -150,7 +150,7 @@
   .hero-desc {
     font-size: 16px;
     line-height: 1.75;
-    color: rgba(245,244,240,0.55);
+    color: var(--white);
     max-width: 420px;
     margin-bottom: 52px;
   }
@@ -248,7 +248,7 @@
     font-size: 12px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(245,244,240,0.35);
+    color: var(--white);
   }
 
   .marquee-dot {
@@ -322,7 +322,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 13px;
     letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.2);
+    color: var(--white);
     margin-bottom: 32px;
   }
 
@@ -342,7 +342,7 @@
   .service-desc {
     font-size: 14px;
     line-height: 1.7;
-    color: rgba(245,244,240,0.45);
+    color: var(--white);
   }
 
   .service-tags {
@@ -355,7 +355,7 @@
     text-transform: uppercase;
     border: 1px solid rgba(255,255,255,0.15);
     padding: 4px 10px;
-    color: rgba(245,244,240,0.4);
+    color: var(--white);
     border-radius: 2px;
   }
 
@@ -371,7 +371,7 @@
   .sectors-intro p {
     font-size: 16px;
     line-height: 1.8;
-    color: rgba(245,244,240,0.5);
+    color: var(--white);
     align-self: end;
   }
 
@@ -435,7 +435,7 @@
   .step-desc {
     font-size: 13px;
     line-height: 1.7;
-    color: rgba(245,244,240,0.4);
+    color: var(--white);
   }
 
   /* ── RÉALISATIONS ── */
@@ -454,7 +454,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 18px;
     letter-spacing: 0.1em;
-    color: rgba(245,244,240,0.35);
+    color: var(--white);
     background: none;
     border: none;
     cursor: none;
@@ -470,7 +470,7 @@
     background: var(--white);
     transition: width 0.4s ease;
   }
-  .tab-btn:hover { color: rgba(245,244,240,0.7); }
+  .tab-btn:hover { color: var(--white); }
   .tab-btn.active { color: var(--white); }
   .tab-btn.active::after { width: calc(100% - 36px); }
   .tab-panel { display: none; }
@@ -523,7 +523,7 @@
   .case-stat-val.highlight { color: var(--accent); }
   .case-stat-label {
     font-size: 11px;
-    color: rgba(245,244,240,0.4);
+    color: var(--white);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -581,7 +581,7 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(245,244,240,0.4);
+    color: var(--white);
     text-decoration: none;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 2px;
@@ -598,7 +598,7 @@
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(245,244,240,0.2);
+    color: var(--white);
   }
 
   .flyers-grid {
@@ -666,7 +666,7 @@
   .cta-band h2 { margin-bottom: 12px; }
   .cta-band p {
     font-size: 15px;
-    color: rgba(245,244,240,0.45);
+    color: var(--white);
     max-width: 500px;
   }
   .cta-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
@@ -705,7 +705,7 @@
 
   .footer-tagline {
     font-size: 13px;
-    color: rgba(245,244,240,0.35);
+    color: var(--white);
     line-height: 1.6;
     max-width: 220px;
   }
@@ -720,7 +720,7 @@
   .footer-col ul { list-style: none; }
   .footer-col ul li {
     font-size: 14px;
-    color: rgba(245,244,240,0.45);
+    color: var(--white);
     margin-bottom: 12px;
     cursor: pointer;
     transition: color 0.3s;
@@ -735,7 +735,7 @@
   .footer-bottom span {
     font-size: 11px;
     letter-spacing: 0.1em;
-    color: rgba(245,244,240,0.25);
+    color: var(--white);
   }
 
   .fade-up {
